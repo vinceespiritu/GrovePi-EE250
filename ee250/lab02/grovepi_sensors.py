@@ -30,20 +30,17 @@ is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will
 be true"""
 if __name__ == '__main__':
     PORT = 4    # D4
+    pot = 0		#A0
+
+     setText("Start Measurement")
+     setRGB(0,128,64)
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
+        pot_value = grovepi.analogRead(pot)
+        read = grovepi.ultrasonicRead(PORT)
 
-        setText("Hello world\nThis is an LCD test")
-        setRGB(0,128,64)
-        time.sleep(2)
-        for c in range(0,255):
-            setText_norefresh("Going to sleep in {}...".format(str(c)))
-            setRGB(c,255-c,0)
-            time.sleep(0.1)
-        setRGB(0,255,0)
-        setText("Bye bye, this should wrap onto next line")
+        setText(str(pot_value) + " ")
 
-        print(grovepi.ultrasonicRead(PORT))
