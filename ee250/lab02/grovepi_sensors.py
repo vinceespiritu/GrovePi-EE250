@@ -32,8 +32,10 @@ if __name__ == '__main__':
     PORT = 4    # D4
     pot = 0		#A0
 
-     setText("Start Measurement")
-     setRGB(0,128,64)
+    setText("Start Measurement")
+    setRGB(0,128,64)
+    setText(" ")
+    buf=" "
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
@@ -42,5 +44,13 @@ if __name__ == '__main__':
         pot_value = grovepi.analogRead(pot)
         read = grovepi.ultrasonicRead(PORT)
 
-        setText(str(pot_value) + " ")
+
+        if(read<pot_value):
+            buf = " OBJ PRES"
+            setRGB(255,0,0)
+            setText_norefresh("%4s %9s %4s"%(str(pot_value),buf,str(read)))
+        else:
+            buf= " "
+            setRGB(0,255,0)
+            setText(str(pot_value) + buf + "\n"+ str(read))
 
