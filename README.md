@@ -1,6 +1,6 @@
 ## **EE 250L: Distributed Systems for the Internet of Things**
 
---this line is for testing--
+--testing--
 
 This fork of the GrovePi repository is for the EE250L course. Please select the
 branch that corresponds to the semester you have taken the course. All course
